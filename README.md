@@ -1,4 +1,4 @@
-# 🧠 Super Admin Dashboard – Access Control & Permissions
+#  Super Admin Dashboard – Access Control & Permissions
 
 A professional admin interface for managing users, roles, and page-level access controls.  
 Built with **React** (frontend) and **Django REST Framework** (backend).  
