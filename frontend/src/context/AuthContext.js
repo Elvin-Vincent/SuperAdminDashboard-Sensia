@@ -73,3 +73,60 @@ export const useAuth = () => {
   }
   return context;
 };
+
+// //if backend works
+// import { createContext, useContext, useState, useEffect } from "react";
+// import { jwtDecode } from "jwt-decode";
+// import api from "../sevices.js/api";
+
+// const AuthContext = createContext();
+
+// export function AuthProvider({ children }) {
+//   const [user, setUser] = useState(null);
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       const decoded = jwtDecode(token);
+//       setUser(decoded);
+//       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+//     }
+//     setLoading(false);
+//   }, []);
+
+//   const login = async (email, password) => {
+//     try {
+//       const response = await api.post("/login", { email, password });
+//       localStorage.setItem("token", response.data.access);
+//       setUser(response.data.user);
+//       return { success: true };
+//     } catch (error) {
+//       return {
+//         success: false,
+//         message: error.response?.data?.error || "Login failed",
+//       };
+//     }
+//   };
+
+//   const logout = () => {
+//     localStorage.removeItem("token");
+//     setUser(null);
+//     delete api.defaults.headers.common["Authorization"];
+//   };
+
+//   const value = {
+//     user,
+//     login,
+//     logout,
+//     isAuthenticated: !!user,
+//   };
+
+//   return (
+//     <AuthContext.Provider value={value}>
+//       {!loading && children}
+//     </AuthContext.Provider>
+//   );
+// }
+
+// export const useAuth = () => useContext(AuthContext);

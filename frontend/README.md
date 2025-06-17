@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# 🧠 Super Admin Dashboard – Access Control & Permissions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A professional admin interface for managing users, roles, and page-level access controls.  
+Built with **React** (frontend) and **Django REST Framework** (backend).  
+Designed for clarity, efficiency, and scalability.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Key Features
 
-### `npm start`
+- 🔐 **JWT Authentication** with access/refresh tokens
+- 👤 **Role-based user management** (Super Admin vs Regular Users)
+- 📄 **Per-page access control**: View, Edit, Create, Delete
+- 💬 **Comment system** with permission-based modification
+- 🕵️ **Modification history tooltip** for transparency
+- 📊 **Dynamic user-role matrix** in the admin dashboard
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- **Frontend:** React 18 + React Bootstrap
+- **Authentication:** JWT (via `simplejwt`)
+- **Backend:** Django + Django REST Framework
+- **Database:** SQLite (dev), pluggable for PostgreSQL/MySQL
+- **API Client:** Axios
+- **Icons & Styling:** Bootstrap + Custom CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 💻 Installation & Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🔧 Frontend (React)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Navigate to frontend folder**  
+   `cd frontend`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**  
+   `npm install`
 
-### `npm run eject`
+3. **Run development server**  
+   `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Open in browser**  
+   Visit `http://localhost:3000`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🐍 Backend (Django)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Navigate to backend folder**  
+   `cd backend`
 
-## Learn More
+2. **Create virtual environment**  
+   `python -m venv venv`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Activate environment**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - Windows: `venv\Scripts\activate`
+   - macOS/Linux: `source venv/bin/activate`
 
-### Code Splitting
+4. **Install dependencies**  
+   `pip install -r requirements.txt`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. **Apply migrations**  
+   `python manage.py makemigrations`  
+   `python manage.py migrate`
 
-### Analyzing the Bundle Size
+6. **Run development server**  
+   `python manage.py runserver`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ⚙️ Current Backend Status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+✅ User model  
+✅ JWT login endpoint  
+✅ Superadmin account support  
+⏳ Permissions API (in progress)  
+⏳ Comment history tracking (planned)  
+⏳ Password reset with OTP (planned)
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🔐 Demo Credentials (for testing)
 
-### Deployment
+| Role         | Email             | Password |
+| ------------ | ----------------- | -------- |
+| Super Admin  | admin@example.com | admin123 |
+| Regular User | user@example.com  | user123  |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+> These are mocked in the frontend if backend isn't fully connected yet.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ✨ Planned Enhancements
+
+- [ ] Complete all backend APIs (permissions, history)
+- [ ] OTP-based password reset
+- [ ] Backend testing & validation
+- [ ] Pagination and filtering on user table
+- [ ] Role-based routing protection on frontend
+
+---
+
+## 🤝 Contribution
+
+Feel free to fork and submit PRs.
+
+1. Fork the repository
+2. Create your feature branch
+3. Push and open a Pull Request
+
+Report bugs or suggest features via [GitHub Issues](#)
+
+---
+
+# 🎯 Project Submission
+
+**Candidate:** Elvin Vincent  
+**Position:** Full Stack Developer  
+**Status:** Backend WIP / Frontend Functional  
+📅 Submission Date: 17-06-2025
