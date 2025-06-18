@@ -1,123 +1,132 @@
-#  Super Admin Dashboard – Access Control & Permissions
+# 🛡️ Super Admin Dashboard – Access Control & Permissions
 
-A professional admin interface for managing users, roles, and page-level access controls.  
-Built with **React** (frontend) and **Django REST Framework** (backend).  
-Designed for clarity, efficiency, and scalability.
+A professional admin interface for managing users, roles, and page-level access permissions.  
+Built with **React** (frontend) and **Django REST Framework** (backend), this dashboard is optimized for clarity, scalability, and maintainability.
 
 ---
 
 ## 🚀 Key Features
 
-- 🔐 **JWT Authentication** with access/refresh tokens
-- 👤 **Role-based user management** (Super Admin vs Regular Users)
-- 📄 **Per-page access control**: View, Edit, Create, Delete
-- 💬 **Comment system** with permission-based modification
-- 🕵️ **Modification history tooltip** for transparency
-- 📊 **Dynamic user-role matrix** in the admin dashboard
+- 🔐 **JWT Authentication** using access and refresh tokens
+- 👤 **Role-Based Access Control** (RBAC): Super Admins vs Regular Users
+- 📄 **Granular Page-Level Permissions**: View, Create, Edit, Delete
+- 💬 **Comment System** with edit/delete based on permissions
+- 🕵️ **Modification History Tooltip** (WIP)
+- 📊 **Dynamic User-Role Matrix** in the admin dashboard
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React 18 + React Bootstrap
-- **Authentication:** JWT (via `simplejwt`)
+- **Frontend:** React 18, React Bootstrap, Axios
+- **Authentication:** JWT (`djangorestframework-simplejwt`)
 - **Backend:** Django + Django REST Framework
-- **Database:** SQLite (dev), pluggable for PostgreSQL/MySQL
-- **API Client:** Axios
-- **Icons & Styling:** Bootstrap + Custom CSS
+- **Database:** SQLite (dev) – pluggable for PostgreSQL/MySQL
+- **UI/UX:** Bootstrap + Custom CSS
 
 ---
 
-## 💻 Installation & Setup
+## ⚙️ Installation & Setup
 
-### 🔧 Frontend (React)
+### 🖥️ Frontend (React)
 
-1. **Navigate to frontend folder**  
-   `cd frontend`
+```bash
+cd frontend
+npm install
+npm start
+```
 
-2. **Install dependencies**  
-   `npm install`
-
-3. **Run development server**  
-   `npm start`
-
-4. **Open in browser**  
-   Visit `http://localhost:3000`
+➡️ Open in browser at `http://localhost:3000`
 
 ---
 
 ### 🐍 Backend (Django)
 
-1. **Navigate to backend folder**  
-   `cd backend`
+```bash
+cd backend
+python -m venv venv
 
-2. **Create virtual environment**  
-   `python -m venv venv`
+# Activate virtual environment:
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
 
-3. **Activate environment**  
-   - Windows: `venv\Scripts\activate`  
-   - macOS/Linux: `source venv/bin/activate`
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser  # If not already done
+python manage.py runserver
+```
 
-4. **Install dependencies**  
-   `pip install -r requirements.txt`
-
-5. **Apply migrations**  
-   `python manage.py makemigrations`  
-   `python manage.py migrate`
-
-6. **Run development server**  
-   `python manage.py runserver`
-
----
-
-## ⚙️ Current Backend Status
-
-✅ User model  
-✅ JWT login endpoint  
-✅ Superadmin account support  
-⏳ Permissions API (in progress)  
-⏳ Comment history tracking (planned)  
-⏳ Password reset with OTP (planned)
+➡️ Backend running at `http://localhost:8000`
 
 ---
 
-## 🔐 Demo Credentials (for testing)
+### 🔗 Key Backend Routes
+
+| URL                                | Description                            |
+| ---------------------------------- | -------------------------------------- |
+| `http://localhost:8000/admin/`     | Django Admin Panel (login required)    |
+| `http://localhost:8000/api/`       | DRF API root with all endpoints        |
+| `http://localhost:8000/api/pages/` | Page management API (CRUD permissions) |
+
+---
+
+## ✅ Backend Progress
+
+| Feature                      | Status         |
+| ---------------------------- | -------------- |
+| Custom User Model            | ✅ Completed   |
+| JWT Authentication           | ✅ Completed   |
+| Superadmin Account Support   | ✅ Completed   |
+| Django Admin Access          | ✅ Completed   |
+| DRF API Root + Browsable API | ✅ Completed   |
+| `/api/pages/` CRUD Endpoint  | ✅ Completed   |
+| Page-Level Permissions API   | ⏳ In Progress |
+| Comment History Tracking     | 🔜 Planned     |
+| OTP-based Password Reset     | 🔜 Planned     |
+
+---
+
+## 🧪 Demo Credentials (for Testing)
 
 | Role         | Email               | Password   |
-|--------------|---------------------|------------|
-| Super Admin  | admin@example.com   | admin123   |
-| Regular User | user@example.com    | user123    |
+| ------------ | ------------------- | ---------- |
+| Super Admin  | `admin@example.com` | `admin123` |
+| Regular User | `user@example.com`  | `user123`  |
 
-> These are mocked in the frontend if backend isn't fully connected yet.
-
----
-
-## ✨ Planned Enhancements
-
-- [ ] Complete all backend APIs (permissions, history)
-- [ ] OTP-based password reset
-- [ ] Backend testing & validation
-- [ ] Pagination and filtering on user table
-- [ ] Role-based routing protection on frontend
+> Login is mocked in frontend for demo purposes if backend is disconnected.
 
 ---
 
-## 🤝 Contribution
+## 📈 Planned Enhancements
 
-Feel free to fork and submit PRs.
-
-1. Fork the repository
-2. Create your feature branch
-3. Push and open a Pull Request
-
-Report bugs or suggest features via [GitHub Issues](#)
+- [ ] Finish page-level permissions API
+- [ ] Add comment history tracking
+- [ ] Implement OTP-based password reset
+- [ ] Add pagination & filtering to user table
+- [ ] Protect frontend routes based on roles
+- [ ] Backend unit tests and validations
 
 ---
 
-# 🎯 Project Submission
+## 🤝 Contributions Welcome
+
+You're welcome to contribute:
+
+1. Fork this repo
+2. Create a new feature branch
+3. Push your changes
+4. Open a Pull Request
+
+You can also report bugs or suggest features via [GitHub Issues](#)
+
+---
+
+## 📦 Project Submission
 
 **Candidate:** Elvin Vincent  
 **Position:** Full Stack Developer  
-**Status:** Backend WIP / Frontend Functional  
-📅 Submission Date: 17-06-2025
-
+**Status:** Backend Extended / Frontend Functional  
+📅 **Submitted on:** 17 June 2025

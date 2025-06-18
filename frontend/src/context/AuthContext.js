@@ -1,12 +1,10 @@
-//AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import api from "../sevices.js/api";
 
-// Create context
 const AuthContext = createContext();
 
-// AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,35 +16,43 @@ export const AuthProvider = ({ children }) => {
       try {
         const decoded = jwtDecode(token);
         setUser(decoded);
+        api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       } catch (error) {
-        console.error("Token decode error:", error);
         logout();
       }
     }
     setLoading(false);
+
+    // Set up inactivity timer (1 hour)
+    const inactivityTimeout = setTimeout(() => {
+      logout();
+    }, 60 * 60 * 1000); // 1 hour
+
+    return () => clearTimeout(inactivityTimeout);
   }, []);
 
   const login = async (credentials) => {
-    if (
-      credentials.email === "admin@example.com" &&
-      credentials.password === "admin123"
-    ) {
-      const mockUser = {
-        id: 1,
-        email: "admin@example.com",
-        is_superadmin: true,
-        token: "mock-token-for-frontend",
-      };
-      localStorage.setItem("token", mockUser.token);
-      setUser(mockUser);
+    try {
+      const response = await api.post("/auth/login", credentials);
+      localStorage.setItem("token", response.data.access);
+      const decoded = jwtDecode(response.data.access);
+      setUser(decoded);
+      api.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.data.access}`;
       return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.detail || "Login failed",
+      };
     }
-    return { success: false, message: "Invalid credentials" };
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    delete api.defaults.headers.common["Authorization"];
     navigate("/login");
   };
 
@@ -65,7 +71,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// useAuth hook
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -73,60 +78,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-// //if backend works
-// import { createContext, useContext, useState, useEffect } from "react";
-// import { jwtDecode } from "jwt-decode";
-// import api from "../sevices.js/api";
-
-// const AuthContext = createContext();
-
-// export function AuthProvider({ children }) {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       const decoded = jwtDecode(token);
-//       setUser(decoded);
-//       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-//     }
-//     setLoading(false);
-//   }, []);
-
-//   const login = async (email, password) => {
-//     try {
-//       const response = await api.post("/login", { email, password });
-//       localStorage.setItem("token", response.data.access);
-//       setUser(response.data.user);
-//       return { success: true };
-//     } catch (error) {
-//       return {
-//         success: false,
-//         message: error.response?.data?.error || "Login failed",
-//       };
-//     }
-//   };
-
-//   const logout = () => {
-//     localStorage.removeItem("token");
-//     setUser(null);
-//     delete api.defaults.headers.common["Authorization"];
-//   };
-
-//   const value = {
-//     user,
-//     login,
-//     logout,
-//     isAuthenticated: !!user,
-//   };
-
-//   return (
-//     <AuthContext.Provider value={value}>
-//       {!loading && children}
-//     </AuthContext.Provider>
-//   );
-// }
-
-// export const useAuth = () => useContext(AuthContext);

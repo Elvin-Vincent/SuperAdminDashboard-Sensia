@@ -19,8 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'users',
+     'pages.apps.PagesConfig', 
+    #  'permissions.apps.PermissionsConfig',
     'corsheaders',
+    'drf_spectacular',
+    'users.apps.UsersConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -100,5 +104,11 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
 }
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Super Admin Dashboard API',
+    'DESCRIPTION': 'API for managing users and permissions',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+AUTH_USER_MODEL = "users.User"
